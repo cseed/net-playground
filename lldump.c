@@ -9,8 +9,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#define ETHER_TYPE 0x0800
-
 void
 print_bytes(void *p, size_t n)
 {
