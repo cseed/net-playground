@@ -112,13 +112,17 @@ main(int argc, const char **argv)
       exit(EXIT_FAILURE);
     }
 
-  // FIXME can the length field be shorter than the minimum payload size?
   size_t packetn = n + 14;
   
   memcpy(buf, dst_eth_addr, 6);
   memcpy(buf + 6, &req.ifr_hwaddr.sa_data, 6);
   
-  *(unsigned short *)(buf + 12) = htons(packetn);
+  /* Note that when the length/type field is used as a length field
+     the length value specified does not include the length of any
+     padding bytes.
+     
+     https://wiki.wireshark.org/Ethernet#Type_.2F_Length_field */
+  *(unsigned short *)(buf + 12) = htons(n);
   
   parse_bytes(argv[3], buf + 14);
   

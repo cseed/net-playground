@@ -16,8 +16,8 @@ lltx transmits a single Ethernet packet.  It sets the protocol to
 $ sudo ./lltx eth0 12:34:56:78:9a:bc deadcafe
 ```
 
-sends a packet on eth0 to the Ethernet address with payload deadcafe.
-It is captured by lldump as:
+sends a packet on eth0 to the Ethernet address 12:34:56:78:9a:bc with
+payload deadcafe.  It is captured by lldump as:
 
 ```
 packet 18
@@ -32,7 +32,7 @@ packet 18
   eth header
     dest addr 123456789abc
     src addr xxxxxxxxxxxx
-    size 18
+    size 4
     payload deadcafe
 ```
 
