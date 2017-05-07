@@ -1,14 +1,19 @@
-all: lldump
+.PHONY: all
+all: lldump lltx
 
 # OPTDEBUGFLAGS = -O2
 OPTDEBUGFLAGS = -g
 
-CFLAGS = $(OPTDEBUGFLAGS) -MD -Wall -Werror -std=c99
+CFLAGS = -std=c99 $(OPTDEBUGFLAGS) -MD -Wall -Werror
 
--include src/*.d
+-include *.d
 
 lldump: lldump.o
-	$(CC) $(CFLAGS) -o lldump lldump.o
+	$(CC) $^ -o $@
+
+lltx: lltx.o
+	$(CC) $^ -o $@
 
 clean:
-	rm -f lldump lldump.o
+	rm -f lldump lltx
+	rm -f *.o

@@ -1,9 +1,12 @@
-
 .PHONY: all
-
 all: srv cli
 
-CFLAGS = -MD -std=c99 -Wall -Werror
+# OPTDEBUGFLAGS = -O2
+OPTDEBUGFLAGS = -g
+
+CFLAGS = -std=c99 $(OPTDEBUGFLAGS) -MD -Wall -Werror
+
+-include *.d
 
 srv: srv.o lib.o
 	$(CC) $^ -o $@

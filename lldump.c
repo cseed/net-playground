@@ -113,6 +113,10 @@ main()
       char buf[8192];
       struct sockaddr_ll src_addr;
       socklen_t src_addr_len = sizeof src_addr;
+      
+      /* does not include frame check sequence (FCS)
+	 http://stackoverflow.com/questions/15651651/is-ethernet-checksum-exposed-via-af-packet */
+      
       ssize_t n = recvfrom(s, buf, sizeof buf, 0, (struct sockaddr *)&src_addr, &src_addr_len);
       if (n == -1)
 	perror("recvfrom");
